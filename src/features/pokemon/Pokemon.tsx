@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
-import {
-  useAppSelector,
-  useAppDispatch,
-} from '../../app/hooks';
+import { useAppDispatch } from '../../app/hooks';
 import { initList } from './pokemonSlice';
-import { selectList } from './pokemonSelectors';
+import PokemonSearch from './PokemonSearch';
 
 const data = [
   { id: '1', name: 'bulbasaur' },
@@ -12,14 +9,17 @@ const data = [
 ];
 
 const Pokemon = () => {
-  const list = useAppSelector(selectList);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(initList(data));
   }, [dispatch]);
 
-  return <div>{list.length}</div>;
+  return (
+    <div>
+      <PokemonSearch />
+    </div>
+  );
 };
 
 export default Pokemon;

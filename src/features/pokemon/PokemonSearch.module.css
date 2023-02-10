@@ -1,0 +1,21 @@
+.searchResults {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 0.5rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.searchItem {
+  border: 1px dotted #efefef;
+  flex: 0 0 180px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.searchItem:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}

@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { Pokemon } from './pokemonSlice';
 import {
-  selectList,
   selectHistory,
+  selectResults,
 } from './pokemonSelectors';
 import {
   useAppSelector,
   useAppDispatch,
 } from '../../app/hooks';
-import { pushHistory } from './pokemonSlice';
+import { pushHistory, searchList } from './pokemonSlice';
 import styles from './PokemonSearch.module.css';
 
 const spriteUrl = (id: string) =>
@@ -16,33 +15,27 @@ const spriteUrl = (id: string) =>
 
 const PokemonSearch = () => {
   const dispatch = useAppDispatch();
-  const list = useAppSelector(selectList);
   const [value, setValue] = useState('');
-  const [data, setData] = useState<Pokemon[]>([]);
 
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
   const onSearch = () => {
-    if (!value) {
-      setData([]);
-    } else {
-      setData(
-        list.filter(
-          (v) =>
-            v.name.includes(value) || v.id.includes(value),
-        ),
-      );
-      dispatch(pushHistory(value));
-    }
+    dispatch(searchList(value));
+    dispatch(pushHistory(value));
   };
 
   const history = useAppSelector(selectHistory);
+  const results = useAppSelector(selectResults);
 
   return (
     <div>
       <small>You have searched: {history.join(', ')}</small>
-      <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <input
           value={value}
           onChange={onChange}
@@ -50,9 +43,14 @@ const PokemonSearch = () => {
         />
         &nbsp;
         <button onClick={onSearch}>Go</button>
-      </div>
+      </form>
+      {results.length > 0 && (
+        <div className={styles.searchMessage}>
+          You found {results.length} results.
+        </div>
+      )}
       <div className={styles.searchResults}>
-        {data.map((p) => (
+        {results.map((p) => (
           <div key={p.name} className={styles.searchItem}>
             <img alt="" src={spriteUrl(p.id)} />
             <div>

@@ -2,12 +2,14 @@ import pokemonReducer, {
   PokemonState,
   initList,
   pushHistory,
+  searchList,
 } from './pokemonSlice';
 
 describe('pokemon reducer', () => {
   const initialState: PokemonState = {
     list: [],
     history: [],
+    results: [],
   };
 
   it('should initialize state', () => {
@@ -16,6 +18,7 @@ describe('pokemon reducer', () => {
     ).toEqual({
       list: [],
       history: [],
+      results: [],
     });
   });
 
@@ -33,5 +36,22 @@ describe('pokemon reducer', () => {
       pushHistory('de'),
     );
     expect(actual.history.length).toEqual(1);
+    expect(actual.history[0]).toEqual('de');
+  });
+
+  it('should search list', () => {
+    const nextState = pokemonReducer(
+      initialState,
+      initList([
+        { id: '1', name: 'Hello' },
+        { id: '2', name: 'World' },
+      ]),
+    );
+    const actual = pokemonReducer(
+      nextState,
+      searchList('or'),
+    );
+    expect(actual.results.length).toEqual(1);
+    expect(actual.results[0].id).toEqual('2');
   });
 });

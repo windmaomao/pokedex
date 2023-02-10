@@ -15,4 +15,4 @@ Since there's requirement for redux+typescript, I started with the following tem
 npx create-react-app my-app --template redux-typescript
 ```
 
-I decided to avoid api thunk for this test, instead all API call are considered as pure side effect that sits outside of redux. I chose this solely to control the time spent on this project.
+I decided to avoid api thunk for this exercise, instead all API call are considered as pure side effects that sit outside of redux. I did this to save time.

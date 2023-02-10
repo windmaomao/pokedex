@@ -1,3 +1,7 @@
+.searchMessage {
+  margin-top: 0.5rem;
+  font-size: 12px;
+}
 .searchResults {
   margin: 1rem 0;
   display: flex;

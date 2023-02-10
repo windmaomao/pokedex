@@ -10,10 +10,12 @@ export interface Pokemon {
 
 export interface PokemonState {
   list: Pokemon[];
+  history: string[];
 }
 
 const initialState: PokemonState = {
   list: [],
+  history: [],
 };
 
 export const pokemonSlice = createSlice({
@@ -22,10 +24,15 @@ export const pokemonSlice = createSlice({
   reducers: {
     initList: (state, action: PayloadAction<Pokemon[]>) => {
       state.list = action.payload;
+      state.history = [];
+    },
+    pushHistory: (state, action: PayloadAction<string>) => {
+      state.history.push(action.payload);
     },
   },
 });
 
-export const { initList } = pokemonSlice.actions;
+export const { initList, pushHistory } =
+  pokemonSlice.actions;
 
 export default pokemonSlice.reducer;

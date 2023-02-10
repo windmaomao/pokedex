@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import { Pokemon } from './pokemonSlice';
-import { selectList } from './pokemonSelectors';
-import { useAppSelector } from '../../app/hooks';
+import {
+  selectList,
+  selectHistory,
+} from './pokemonSelectors';
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../app/hooks';
+import { pushHistory } from './pokemonSlice';
 import styles from './PokemonSearch.module.css';
 
 const spriteUrl = (id: string) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
 const PokemonSearch = () => {
+  const dispatch = useAppDispatch();
   const list = useAppSelector(selectList);
   const [value, setValue] = useState('');
   const [data, setData] = useState<Pokemon[]>([]);
@@ -25,11 +33,15 @@ const PokemonSearch = () => {
             v.name.includes(value) || v.id.includes(value),
         ),
       );
+      dispatch(pushHistory(value));
     }
   };
 
+  const history = useAppSelector(selectHistory);
+
   return (
     <div>
+      <small>You have searched: {history.join(', ')}</small>
       <div>
         <input
           value={value}

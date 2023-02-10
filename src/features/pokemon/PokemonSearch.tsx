@@ -20,9 +20,10 @@ const PokemonSearch = () => {
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
-  const onSearch = () => {
-    dispatch(searchList(value));
-    dispatch(pushHistory(value));
+  const onSearch = (v: string) => () => {
+    dispatch(searchList(v));
+    dispatch(pushHistory(v));
+    setValue('');
   };
 
   const history = useAppSelector(selectHistory);
@@ -30,7 +31,14 @@ const PokemonSearch = () => {
 
   return (
     <div>
-      <small>You have searched: {history.join(', ')}</small>
+      <div className={styles.searchHistory}>
+        History: &nbsp;
+        {history.map((s, i) => (
+          <span key={i} onClick={onSearch(s)}>
+            {s}
+          </span>
+        ))}
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -42,7 +50,7 @@ const PokemonSearch = () => {
           placeholder="Search by name or id"
         />
         &nbsp;
-        <button onClick={onSearch}>Go</button>
+        <button onClick={onSearch(value)}>Go</button>
       </form>
       {results.length > 0 && (
         <div className={styles.searchMessage}>

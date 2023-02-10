@@ -1,3 +1,13 @@
+.searchHistory {
+  font-size: 12px;
+}
+.searchHistory span {
+  padding: 0 0.1rem;
+}
+.searchHistory span:hover {
+  color: red;
+  cursor: pointer;
+}
 .searchMessage {
   margin-top: 0.5rem;
   font-size: 12px;

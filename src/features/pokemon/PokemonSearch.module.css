@@ -1,3 +1,24 @@
+.searchInput {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px dotted red;
+}
+.searchInput:focus {
+  outline: none;
+}
+
+.searchButton {
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  font-size: 11px;
+  padding: 2px 4px;
+}
+.searchButton:hover {
+  cursor: pointer;
+}
+
 .searchHistory {
   font-size: 12px;
   margin-bottom: 0.5rem;
@@ -9,10 +30,12 @@
   color: red;
   cursor: pointer;
 }
+
 .searchMessage {
   margin-top: 0.5rem;
   font-size: 12px;
 }
+
 .searchResults {
   margin: 1rem 0;
   display: flex;

@@ -31,26 +31,34 @@ const PokemonSearch = () => {
 
   return (
     <div>
-      <div className={styles.searchHistory}>
-        History: &nbsp;
-        {history.map((s, i) => (
-          <span key={i} onClick={onSearch(s)}>
-            {s}
-          </span>
-        ))}
-      </div>
+      {history.length > 0 && (
+        <div className={styles.searchHistory}>
+          History: &nbsp;
+          {history.map((s, i) => (
+            <span key={i} onClick={onSearch(s)}>
+              {s}
+            </span>
+          ))}
+        </div>
+      )}
       <form
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
         <input
+          className={styles.searchInput}
           value={value}
           onChange={onChange}
           placeholder="Search by name or id"
         />
         &nbsp;
-        <button onClick={onSearch(value)}>Go</button>
+        <button
+          className={styles.searchButton}
+          onClick={onSearch(value)}
+        >
+          go
+        </button>
       </form>
       {results.length > 0 && (
         <div className={styles.searchMessage}>

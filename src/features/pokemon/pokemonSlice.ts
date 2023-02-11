@@ -30,7 +30,12 @@ export const pokemonSlice = createSlice({
       state.results = [];
     },
     pushHistory: (state, action: PayloadAction<string>) => {
-      state.history.push(action.payload);
+      const { payload } = action;
+      if (payload) {
+        if (state.history.indexOf(payload) < 0) {
+          state.history.push(action.payload);
+        }
+      }
     },
     searchList: (state, action: PayloadAction<string>) => {
       const { payload } = action;

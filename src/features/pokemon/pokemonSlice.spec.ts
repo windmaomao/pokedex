@@ -31,12 +31,26 @@ describe('pokemon reducer', () => {
   });
 
   it('should push history', () => {
-    const actual = pokemonReducer(
+    const nextState = pokemonReducer(
       initialState,
       pushHistory('de'),
     );
-    expect(actual.history.length).toEqual(1);
-    expect(actual.history[0]).toEqual('de');
+    expect(nextState.history.length).toEqual(1);
+    const nextState2 = pokemonReducer(
+      nextState,
+      pushHistory(''),
+    );
+    expect(nextState2.history.length).toEqual(1);
+    const nextState3 = pokemonReducer(
+      nextState2,
+      pushHistory('de'),
+    );
+    expect(nextState3.history.length).toEqual(1);
+    const nextState4 = pokemonReducer(
+      nextState3,
+      pushHistory('ab'),
+    );
+    expect(nextState4.history).toEqual(['de', 'ab']);
   });
 
   it('should search list', () => {
@@ -47,11 +61,17 @@ describe('pokemon reducer', () => {
         { id: '2', name: 'World' },
       ]),
     );
-    const actual = pokemonReducer(
+    const nextState2 = pokemonReducer(
       nextState,
       searchList('or'),
     );
-    expect(actual.results.length).toEqual(1);
-    expect(actual.results[0].id).toEqual('2');
+    expect(nextState2.results.length).toEqual(1);
+    expect(nextState2.results[0].id).toEqual('2');
+    const nextState3 = pokemonReducer(
+      nextState2,
+      searchList('1'),
+    );
+    expect(nextState3.results.length).toEqual(1);
+    expect(nextState3.results[0].id).toEqual('1');
   });
 });

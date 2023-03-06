@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Avatar from 'src/components/Avatar';
 import {
   selectHistory,
@@ -67,15 +68,26 @@ const PokemonSearch = () => {
         </div>
       )}
       <div className={styles.searchResults}>
-        {results.map((p) => (
-          <div key={p.name} className={styles.searchItem}>
-            <Avatar name={p.name} src={spriteUrl(p.id)} />
-            <div>
-              <div>{p.name}</div>
-              <small>(id: {p.id})</small>
-            </div>
-          </div>
-        ))}
+        <AnimatePresence>
+          {results.map((p, i) => (
+            <motion.div
+              key={p.id}
+              className={styles.searchItem}
+              initial={{ opacity: 0, translateY: 10 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.03,
+              }}
+            >
+              <Avatar name={p.name} src={spriteUrl(p.id)} />
+              <div>
+                <div>{p.name}</div>
+                <small>(id: {p.id})</small>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

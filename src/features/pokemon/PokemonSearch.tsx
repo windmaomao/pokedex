@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Avatar from '../../components/Avatar/Avatar';
+import Avatar from 'src/components/Avatar';
 import {
   selectHistory,
   selectResults,

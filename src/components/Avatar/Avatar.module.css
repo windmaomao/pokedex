@@ -1,9 +1,13 @@
 .missing {
   font-size: 1rem;
-  padding: 0.8rem;
   text-transform: uppercase;
   color: gray;
   border: 1px dotted lightgray;
   border-radius: 50%;
-  margin: 0.5rem;
+  margin: 0.8rem;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

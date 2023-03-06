@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Avatar from '../../components/Avatar/Avatar';
 import {
   selectHistory,
   selectResults,
@@ -14,7 +15,7 @@ const spriteUrl = (id: string) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
 const PokemonSearch = () => {
-  const dispatch = useAppDispatch();
+  const dispatch: any = useAppDispatch();
   const [value, setValue] = useState('');
 
   const onChange = (e: any) => {
@@ -68,7 +69,7 @@ const PokemonSearch = () => {
       <div className={styles.searchResults}>
         {results.map((p) => (
           <div key={p.name} className={styles.searchItem}>
-            <img alt="" src={spriteUrl(p.id)} />
+            <Avatar name={p.name} src={spriteUrl(p.id)} />
             <div>
               <div>{p.name}</div>
               <small>(id: {p.id})</small>

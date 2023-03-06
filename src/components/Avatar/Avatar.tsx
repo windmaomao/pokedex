@@ -19,9 +19,7 @@ const Avatar = ({ name, src }: AvatarProps) => {
   return (
     <>
       {error ? (
-        <span className={styles.missing}>
-          {short(name)}
-        </span>
+        <div className={styles.missing}>{short(name)}</div>
       ) : (
         <img src={src} alt={name} onError={onError} />
       )}

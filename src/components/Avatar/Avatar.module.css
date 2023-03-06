@@ -1,6 +1,9 @@
 .missing {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0.8rem;
   text-transform: uppercase;
   color: gray;
+  border: 1px dotted lightgray;
+  border-radius: 50%;
+  margin: 0.5rem;
 }

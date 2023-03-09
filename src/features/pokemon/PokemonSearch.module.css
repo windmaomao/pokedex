@@ -37,23 +37,20 @@
 }
 
 .searchResults {
-  margin: 1rem 0;
+  margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 0.5rem 0;
+  gap: 2rem 0;
   max-height: calc(100vh - 180px);
-  overflow-y: auto;
 }
 
 .searchItem {
-  border: 1px dotted #efefef;
-  flex: 0 0 180px;
+  flex: 0 0 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   font-size: 12px;
-}
-.searchItem:hover {
-  background-color: #fafafa;
   cursor: pointer;
+  text-transform: capitalize;
 }

@@ -75,7 +75,7 @@ const PokemonSearch = () => {
               className={styles.searchItem}
               initial={{ opacity: 0, translateY: 10 }}
               whileInView={{ opacity: 1, translateY: 0 }}
-              viewport={{ once: false, amount: 1 }}
+              viewport={{ once: false, amount: 0 }}
               whileHover={{ scale: 1.3 }}
               transition={{
                 duration: 0.5,
@@ -86,9 +86,14 @@ const PokemonSearch = () => {
                 },
               }}
             >
+              <div>{p.name}</div>
+              <small>id: {p.id}</small>
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ type: 'spring', bounce: 0.2 }}
+                transition={{
+                  type: 'spring',
+                  bounce: 0.2,
+                }}
                 whileHover={{
                   rotate: [360, 370, 350, 360],
                 }}
@@ -98,10 +103,6 @@ const PokemonSearch = () => {
                   src={spriteUrl(p.id)}
                 />
               </motion.div>
-              <div>
-                <div>{p.name}</div>
-                <small>(id: {p.id})</small>
-              </div>
             </motion.div>
           ))}
         </AnimatePresence>

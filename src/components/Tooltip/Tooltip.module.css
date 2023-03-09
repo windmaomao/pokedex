@@ -1,0 +1,14 @@
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.popup {
+  border: 1px solid black;
+  background-color: gray;
+  padding: 0.2rem;
+  border-radius: 4px;
+  position: absolute;
+  color: white;
+  z-index: 1;
+}

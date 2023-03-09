@@ -46,11 +46,10 @@
 }
 
 .searchItem {
-  flex: 0 0 150px;
+  flex: 0 0 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 12px;
   cursor: pointer;
-  text-transform: capitalize;
 }

@@ -8,7 +8,9 @@
   background-color: gray;
   padding: 0.2rem;
   border-radius: 4px;
-  position: absolute;
   color: white;
-  z-index: 1;
+  position: absolute;
+  bottom: 70%;
+  left: 60%;
+  width: 140%;
 }

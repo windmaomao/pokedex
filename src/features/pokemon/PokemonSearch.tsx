@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Avatar from 'src/components/Avatar';
+import Tooltip from 'src/components/Tooltip';
 import {
   selectHistory,
   selectResults,
@@ -10,6 +11,7 @@ import {
   useAppDispatch,
 } from '../../app/hooks';
 import { pushHistory, searchList } from './pokemonSlice';
+import PokemonSpecies from './PokemonSpecies';
 import styles from './PokemonSearch.module.css';
 
 const spriteUrl = (id: string) =>
@@ -76,7 +78,7 @@ const PokemonSearch = () => {
               initial={{ opacity: 0, translateY: 10 }}
               whileInView={{ opacity: 1, translateY: 0 }}
               viewport={{ once: false, amount: 0 }}
-              whileHover={{ scale: 1.3 }}
+              // whileHover={{ scale: 1.3 }}
               transition={{
                 duration: 0.5,
                 delay: i * 0.03,
@@ -88,21 +90,23 @@ const PokemonSearch = () => {
             >
               <div>{p.name}</div>
               <small>id: {p.id}</small>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  type: 'spring',
-                  bounce: 0.2,
-                }}
-                whileHover={{
-                  rotate: [360, 370, 350, 360],
-                }}
-              >
-                <Avatar
-                  name={p.name}
-                  src={spriteUrl(p.id)}
-                />
-              </motion.div>
+              <Tooltip title={<PokemonSpecies id={p.id} />}>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    type: 'spring',
+                    bounce: 0.2,
+                  }}
+                  whileHover={{
+                    rotate: [360, 370, 350, 360],
+                  }}
+                >
+                  <Avatar
+                    name={p.name}
+                    src={spriteUrl(p.id)}
+                  />
+                </motion.div>
+              </Tooltip>
             </motion.div>
           ))}
         </AnimatePresence>

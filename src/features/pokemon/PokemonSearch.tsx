@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { debounce } from 'lodash';
 import Avatar from 'src/components/Avatar';
 import Tooltip from 'src/components/Tooltip';
 import {
@@ -21,13 +22,20 @@ const PokemonSearch = () => {
   const dispatch: any = useAppDispatch();
   const [value, setValue] = useState('');
 
+  const search = useMemo(() => {
+    return debounce((v: string) => {
+      dispatch(searchList(v));
+    }, 300);
+  }, [dispatch]);
+
   const onChange = (e: any) => {
-    setValue(e.target.value);
+    const v = e.target.value;
+    setValue(v);
+    search(v);
   };
   const onSearch = (v: string) => () => {
-    dispatch(searchList(v));
+    search(v);
     dispatch(pushHistory(v));
-    setValue('');
   };
 
   const history = useAppSelector(selectHistory);

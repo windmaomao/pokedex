@@ -17,20 +17,26 @@ const PokemonSpecies = ({ id }: PokemonSpeciesProps) => {
     useState<PokemonSpeciesType>();
 
   useEffect(() => {
-    axios(speciesUrl + id).then((res) => {
-      const { flavor_text_entries: entries } = res.data;
-      // console.log(res.data);
-      const entry: any = entries.find(
-        (v: any) => v.language.name === 'en',
-      );
+    axios(speciesUrl + id)
+      .then((res) => {
+        const { flavor_text_entries: entries } = res.data;
+        // console.log(res.data);
+        const entry: any = entries.find(
+          (v: any) => v.language.name === 'en',
+        );
 
-      setSpecies({
-        text: pretty(entry.flavor_text),
+        setSpecies({
+          text: pretty(entry.flavor_text),
+        });
+      })
+      .catch(() => {
+        setSpecies({
+          text: 'Not available',
+        });
       });
-    });
   }, [id]);
 
-  return <small>{species?.text}</small>;
+  return <small>{species?.text || '...'}</small>;
 };
 
 export default PokemonSpecies;

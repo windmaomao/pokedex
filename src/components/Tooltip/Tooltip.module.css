@@ -10,7 +10,12 @@
   border-radius: 4px;
   color: white;
   position: absolute;
-  bottom: 70%;
-  left: 60%;
+  bottom: 80%;
+  left: 50%;
   width: 140%;
+}
+
+.invert {
+  right: 50%;
+  left: unset;
 }

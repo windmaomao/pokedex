@@ -50,7 +50,7 @@
   "prettier": {
     "tabWidth": 2,
     "singleQuote": true,
-    "printWidth": 60,
+    "printWidth": 80,
     "trailingComma": "all"
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import classNames from 'classnames';
 import styles from './Tooltip.module.css';
 
@@ -8,24 +8,30 @@ interface TooltipProps {
 }
 const Tooltip = ({ children, title }: TooltipProps) => {
   const [entered, setEntered] = useState(false);
-  const on = (v: boolean) => () => {
+  const on = (v: boolean) => (e: any) => {
     setEntered(v);
   };
 
   const [left, setLeft] = useState(false);
-  useEffect(() => {
-    function handleMouseOver(e: any) {
+  // const setLeft_ = useMemo(() => {
+  //   return debounce(
+  //     (v: boolean) => {
+  //       console.info('setLeft debounced');
+  //       setLeft(v);
+  //     },
+  //     300,
+  //     { leading: true },
+  //   );
+  // }, [setLeft]);
+
+  const handleMouseOver = useCallback(
+    (e: any) => {
       const p = e.clientX / window.innerWidth;
+      console.info('setLeft');
       setLeft(p > 0.5);
-    }
-    window.addEventListener('mouseover', handleMouseOver);
-    return () => {
-      window.removeEventListener(
-        'mouseover',
-        handleMouseOver,
-      );
-    };
-  });
+    },
+    [setLeft],
+  );
 
   const popupClassnames = classNames(styles.popup, {
     [styles.invert]: left,
@@ -33,12 +39,14 @@ const Tooltip = ({ children, title }: TooltipProps) => {
 
   return (
     <div className={styles.tooltip}>
-      <div onMouseEnter={on(true)} onMouseLeave={on(false)}>
+      <div
+        onMouseEnter={on(true)}
+        onMouseLeave={on(false)}
+        onMouseOver={handleMouseOver}
+      >
         {children}
+        {entered && <div className={popupClassnames}>{title}</div>}
       </div>
-      {entered && (
-        <div className={popupClassnames}>{title}</div>
-      )}
     </div>
   );
 };

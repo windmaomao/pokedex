@@ -1,14 +1,17 @@
-import Pokemon from './features/pokemon/Pokemon';
-import './App.css';
+import Pokemon from 'src/features/pokemon/Pokemon';
+import { ThemeProvider } from 'src/features/theme';
+import ThemeSelect from 'src/components/ThemeSelect';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>POKEDEX</h1>
+    <ThemeProvider>
+      <div className={styles.app}>
+        <ThemeSelect />
+        <div className={styles.title}>POKEDEX</div>
         <Pokemon />
-      </header>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

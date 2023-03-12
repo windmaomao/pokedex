@@ -1,13 +1,10 @@
 body {
-  font-family: source-code-pro, Menlo, Monaco, Consolas,
-    'Courier New', monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
 }
 
-h1 {
-  font-family: monospace;
-  margin: 0.8rem;
+body:has(.light) {
+  background: white;
+}
+body:has(.dark) {
+  background: black;
 }

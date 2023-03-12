@@ -6,6 +6,8 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 1px dotted red;
+  background-color: transparent;
+  color: var(--colorForeground);
 }
 .searchInput:focus {
   outline: none;

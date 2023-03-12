@@ -1,5 +1,6 @@
 .app {
   background-color: var(--colorBackground);
+  color: var(--colorForeground);
 
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

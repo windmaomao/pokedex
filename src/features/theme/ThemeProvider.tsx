@@ -16,7 +16,7 @@ const ThemeProvider = ({
 }: ThemeProviderProps) => {
   const [theme, change] = useState(initialTheme);
   const value = { theme, change };
-  console.log(theme);
+
   return (
     <ThemeContext.Provider value={value}>
       <div style={getThemeStyle(theme)} className={theme.id}>

@@ -41,12 +41,12 @@
 }
 
 .searchResults {
+  max-width: 800px;
   margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 2rem 0;
-  max-height: calc(100vh - 180px);
 }
 
 .searchItem {

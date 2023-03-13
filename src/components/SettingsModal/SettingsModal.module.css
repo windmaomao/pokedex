@@ -1,14 +1,15 @@
 .modal {
   position: fixed;
-  top: 20%;
+  top: 108px;
   left: 30%;
   width: 40%;
   height: 100px;
   background-color: var(--colorForeground);
   color: var(--colorBackground);
-  border-radius: 10px;
-  opacity: 0.96;
+  border-radius: 8px;
+  opacity: 0.92;
   z-index: 2;
+  box-shadow: 0 0.1rem 0.4rem var(--colorForeground);
 
   box-sizing: border-box;
   display: flex;

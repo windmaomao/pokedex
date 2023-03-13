@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider>
       <div className={styles.app}>
         <div className={styles.settings} onClick={onClick}>
-          settings
+          light | dark
         </div>
         <Modal on={on} close={onClose} />
         <div className={styles.title}>POKEDEX</div>
